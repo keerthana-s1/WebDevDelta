@@ -22,7 +22,7 @@
             box-sizing: border-box;
  
             border: none;
-  color: #076809;
+  color: #000000;
   padding: 16px 16px;
   text-align: center;
   text-decoration: none;
@@ -39,7 +39,7 @@
            right: 550px;
             top:60px;
             border: none;
-  color: #076809;
+  color: #067391;
   padding: 16px 16px;
   text-align: center;
   text-decoration: none;
@@ -56,11 +56,29 @@
         .diff1{
             color: #ffffff;
             position: absolute;
-            left:80px;
+            left:900px;
             top:40px;
         }
+         .ediff1{
+            color: #ffffff;
+            position: absolute;
+            left:900px;
+            top:60px;
+        }
+         .mdiff1{
+            color: #ffffff;
+            position: absolute;
+            left:900px;
+            top:200px;
+        }
+         .ddiff1{
+            color: #ffffff;
+            position: absolute;
+            left:900px;
+            top:340px;
+        }
         .diff2{
-            color: #076809;
+            color: #067391;
             position: absolute;
             left:500px;
             top:200px;
@@ -72,31 +90,80 @@
     } 
       
         body { background-color: #313330;
-            color:#076809;
+            color:#067391;
     width: 50%; 
     max-width: 800px; 
     min-width: 480px; 
     margin: 0 auto; 
     } 
+        
+        .vertical-menu {
+  width: 200px;
+            position: absolute;
+            left: 10px;
+            top:10px;
+}
+
+.vertical-menu a {
+  background-color: #000000;
+  color:#067391;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ffffff;
+
+}
+
+.vertical-menu a.active {
+  background-color: #067391;
+  color: white;
+}
     </style> 
 </head> 
   
 <body onload="show();"> <br>
     <div class="diff2" id="cd"></div>
     <div class="diff1">BEST SCORES</div>
-    <ul class="diff1">
-    <li ><span id="best1"></span></li>
-    <li ><span id="best2"></span></li>
-    <li ><span id="best3"></span></li>
-    <li ><span id="best4"></span></li>
-    <li ><span id="best5"></span> </li>
+    <div class="ediff1">EASY</div>
+    <ul class="ediff1">
+    <li ><span id="ebest1"></span></li>
+    <li ><span id="ebest2"></span></li>
+    <li ><span id="ebest3"></span></li>
+    <li ><span id="ebest4"></span></li>
+    <li ><span id="ebest5"></span> </li>
+</ul>
+    <div class="mdiff1">MEDIUM</div>
+    <ul class="mdiff1">
+    <li ><span id="mbest1"></span></li>
+    <li ><span id="mbest2"></span></li>
+    <li ><span id="mbest3"></span></li>
+    <li ><span id="mbest4"></span></li>
+    <li ><span id="mbest5"></span> </li>
+</ul>
+    <div class="ddiff1">DIFFICULT</div>
+    <ul class="ddiff1">
+    <li ><span id="dbest1"></span></li>
+    <li ><span id="dbest2"></span></li>
+    <li ><span id="dbest3"></span></li>
+    <li ><span id="dbest4"></span></li>
+    <li ><span id="dbest5"></span> </li>
 </ul>
     <div class="diff">Time: <span id="time"></span></div>
-    
-    
+ 
+   
+    <audio id="audio"  src="C:\Users\User\Downloads\mozart.mp3"></audio>
 <h4>Click the numbers as quickly as you can!</h4> 
   
 <p></p> 
+    <div class="vertical-menu">
+  <a href="#" class="active">Difficulty</a>
+  <a id="easy" onclick="easy()" >Easy</a>
+  <a id="moderate" onclick="moderate()">Moderate</a>
+  <a id="difficult" onclick="difficult()">Difficult</a>
+</div>
   
 <div class="form"> 
     
@@ -135,6 +202,7 @@
 </div> 
   
 <script type = "text/javascript">
+    var audio = document.getElementById("audio");
     var	clsStopwatch = function() {
 		
 		var	startAt	= 0;	
@@ -212,12 +280,20 @@ function reset() {
 	update();
 }
 function cdtimer()
-    {    stop();
+    {   
+        stop();
 	     x.reset();
 	     update();
+        if(guess==0)
+            alert("Choose difficulty first");
+     else{
         
+               
          for(i=1;i<=20;i++)
-               document.getElementById(i).value="    ";
+     {
+      document.getElementById(i).style.backgroundColor="#000000";
+         document.getElementById(i).value="    ";
+     }
      
         var timeleft = 3;
         var downloadTimer = setInterval(function(){
@@ -232,23 +308,81 @@ function cdtimer()
                       document.getElementById("cd").innerHTML ="";
     
     
-                       }, 1000);
+                       }, 1000);}
      
       
     }
     
     
     
-     var guess = 21,i,j,th;
+     var guess=0,i,j,th;
      var index=1;
      var flag=1;
      var bestt=[0,0,0,0,0];
-     bestt=JSON.parse(localStorage.getItem("bestu"));
-     document.getElementById("best1").innerHTML=formatTime(bestt[0]); 
-     document.getElementById("best2").innerHTML=formatTime(bestt[1]);
-     document.getElementById("best3").innerHTML=formatTime(bestt[2]);
-     document.getElementById("best4").innerHTML=formatTime(bestt[3]);
-     document.getElementById("best5").innerHTML=formatTime(bestt[4]);
+    var a ="rgb(";//
+    var c,d,mid=",",c1,d1;
+    var b=",255)";
+ if(localStorage.getItem("bestu")==null)
+     localStorage.setItem("bestu",JSON.stringify(bestt));
+    bestt=JSON.parse(localStorage.getItem("bestu"));
+        document.getElementById("ebest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("ebest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("ebest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("ebest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("ebest5").innerHTML=formatTime(bestt[4]);
+    var bestt=[0,0,0,0,0];
+    if(localStorage.getItem("mbestu")==null)
+     localStorage.setItem("mbestu",JSON.stringify(bestt));
+     bestt=JSON.parse(localStorage.getItem("mbestu"));
+             document.getElementById("mbest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("mbest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("mbest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("mbest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("mbest5").innerHTML=formatTime(bestt[4]);  
+    var bestt=[0,0,0,0,0];
+    if(localStorage.getItem("dbestu")==null)
+     localStorage.setItem("dbestu",JSON.stringify(bestt));
+    bestt=JSON.parse(localStorage.getItem("dbestu"));
+            document.getElementById("dbest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("dbest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("dbest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("dbest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("dbest5").innerHTML=formatTime(bestt[4]);
+     
+    function easy()
+    {
+        guess=21;
+        limit=40;
+        document.getElementById("easy").style.background="#ffffff";
+        document.getElementById("moderate").style.background="#000000";
+        document.getElementById("difficult").style.background="#000000";
+        //localStorage.setItem("bestu",JSON.stringify(bestt));
+        bestt=JSON.parse(localStorage.getItem("bestu"));
+    }
+    
+     function moderate()
+    {
+        guess=21;
+        limit=60;
+        document.getElementById("easy").style.background="#000000";
+        document.getElementById("moderate").style.background="#ffffff";
+        document.getElementById("difficult").style.background="#000000";
+        //localStorage.setItem("mbestu",JSON.stringify(bestt));
+        bestt=JSON.parse(localStorage.getItem("mbestu"));
+                
+    }
+    
+     function difficult()
+    {
+        guess=21;
+        limit=80;
+        document.getElementById("easy").style.background="#000000";
+        document.getElementById("moderate").style.background="#000000";
+        document.getElementById("difficult").style.background="#ffffff";
+        //localStorage.setItem("dbestu",JSON.stringify(bestt));
+        bestt=JSON.parse(localStorage.getItem("dbestu"));
+            
+    }
     
    function arrange()
     { for(i=0;i<5;i++)
@@ -262,20 +396,47 @@ function cdtimer()
                 bestt[j]=bestt[j-1];
             }
      bestt[i]=parseInt(x.time());
-     document.getElementById("best1").innerHTML=formatTime(bestt[0]); 
-     document.getElementById("best2").innerHTML=formatTime(bestt[1]);
-     document.getElementById("best3").innerHTML=formatTime(bestt[2]);
-     document.getElementById("best4").innerHTML=formatTime(bestt[3]);
-     document.getElementById("best5").innerHTML=formatTime(bestt[4]);
-     localStorage.setItem("bestu",JSON.stringify(bestt));
+     
+     if(index==41)
+         {
+             localStorage.setItem("bestu",JSON.stringify(bestt));
+             document.getElementById("ebest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("ebest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("ebest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("ebest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("ebest5").innerHTML=formatTime(bestt[4]);
+         }
+     
+     else if(index==61)
+         {
+             localStorage.setItem("mbestu",JSON.stringify(bestt));
+             document.getElementById("mbest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("mbest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("mbest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("mbest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("mbest5").innerHTML=formatTime(bestt[4]);             
+         }
+
+     else if(index==81)
+         {
+             localStorage.setItem("dbestu",JSON.stringify(bestt));
+             document.getElementById("dbest1").innerHTML=formatTime(bestt[0]); 
+             document.getElementById("dbest2").innerHTML=formatTime(bestt[1]);
+             document.getElementById("dbest3").innerHTML=formatTime(bestt[2]);
+             document.getElementById("dbest4").innerHTML=formatTime(bestt[3]);
+             document.getElementById("dbest5").innerHTML=formatTime(bestt[4]);
+         }
+         
     
     
     }
     
     function game()
-    {    stop();
+    {    audio.play(); 
+         stop();
 	     x.reset();
 	     update();
+     
         document.getElementById("cd").innerHTML ="";
          
          clocktimer = setInterval("update()", 1);
@@ -306,34 +467,52 @@ function cdtimer()
                    }
             }
      for(i=1;i<=20;i++)
-     document.getElementById(i).value=arr[i-1];
-     
+     {document.getElementById(i).value=arr[i-1];
+      c=180-(2*arr[i-1]);
+      d=226-arr[i-1];
+      c1=c.toString();
+       d1=d.toString();
+      document.getElementById(i).style.backgroundColor=a+c1+mid+d1+b;
+     }
      index=1;
      guess=21;
+     var limit;
      
     }
      
    
 function myFunction(id)
-{
+{ 
   if(flag)
    {
     if(index==document.getElementById(id).value)
     {   index++;
-        if(guess<=40)
+        if(guess<=limit)
            {document.getElementById(id).value=guess; 
             guess=guess+1;
+            c=180-(2*(guess-1));
+      d=225-guess;
+      c1=c.toString();
+       d1=d.toString();
+      document.getElementById(id).style.backgroundColor=a+c1+mid+d1+b;
             }
     
          else 
             {document.getElementById(id).value="    ";
-             if(index==41)
+             c=180-(2*(guess-1));
+      d=225-guess;
+      c1=c.toString();
+       d1=d.toString();
+      document.getElementById(id).style.backgroundColor=a+c1+mid+d1+b;
+             if(index==(limit+1))
                  {   x.stop();
                     th=x.time();
                      
                      alert("YOUR TIME IS "+ document.getElementById("time").innerHTML);
                      
 	                 clearInterval(clocktimer);
+                     audio.pause();
+                    audio.currentTime=0;
         
                     if(parseInt(th)<bestt[4]|| bestt[4]==0)
                         {arrange();
@@ -343,7 +522,9 @@ function myFunction(id)
            }
     }
     else 
-         {document.getElementById("start").value="RESTART";
+         {audio.pause();
+          audio.currentTime=0;
+          document.getElementById("start").value="RESTART";
           alert("GAME OVER! YOU LOST in "+ document.getElementById("time").innerHTML);
           flag=0;
           stop();
