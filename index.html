@@ -135,18 +135,21 @@
    .vertical-menu a {
     display: inline-block;
        min-width: 150px;
+       font-size: 50px;
   }
             .diff{
                 position: relative;
                 top:300px;
+                   font-size: 50px;             
             }
             .button1{
-                position: absolute;
-                top:510px;
+                position: relative;
+                top:400px;
+                font-size: 50px;
             }
             .vertical-menu{position: absolute;
             top:100px;
-                width:800px;
+                width:1000px;
                   left:100px;
             }
             body{
@@ -155,8 +158,8 @@
             }
             .griddo{
                 position: relative;
-                top:500px;
-                right:100px;
+                top:0px;
+                right:10px;
                 max-width:1000px;
                 min-width:1000px;
                 max-height: 800px;
@@ -164,8 +167,21 @@
             }
             .score{
                 position: absolute;
-                top:1600px;
+                top:1800px;
+                display:inline;
             }
+            .form{
+                position: relative;
+                top:0px;
+                right:80px;
+                z-index: -1;
+            }
+            .diff2{
+                position: relative;
+                
+            }
+            
+            
 }
     </style> 
 </head> 
@@ -224,7 +240,7 @@
 </div>
     <div class="score">
     <div >BEST SCORES</div>
-    <span>EASY
+    <span class="easy">EASY
     <ul >
     <li ><span id="ebest1"></span></li>
     <li ><span id="ebest2"></span></li>
@@ -232,7 +248,7 @@
     <li ><span id="ebest4"></span></li>
     <li ><span id="ebest5"></span> </li>
    </ul></span>
-    <span >MEDIUM
+    <span class="easy">MEDIUM
     <ul >
     <li ><span id="mbest1"></span></li>
     <li ><span id="mbest2"></span></li>
@@ -240,7 +256,7 @@
     <li ><span id="mbest4"></span></li>
     <li ><span id="mbest5"></span> </li>
 </ul></span>
-    <span >DIFFICULT
+    <span class="easy" >DIFFICULT
     <ul >
     <li ><span id="dbest1"></span></li>
     <li ><span id="dbest2"></span></li>
