@@ -5,12 +5,16 @@
     <title>SPEED TEST</title> 
   
     <style> 
+        
         .griddo{
-             display: grid;
+             display: inline-grid;
             grid-template-columns: auto auto auto auto auto;
-            width= 50%;
-            position: absolute;
-            top: 150px;
+            max-width: 500px;
+            min-width: 500px;
+            max-height: 400px;
+            min-height: 400px;
+            z-index: 1;
+            position: relative;
             border: 2px solid #ffffff ;
   border-radius: 5px;
             border-spacing: 30px;
@@ -22,11 +26,9 @@
             box-sizing: border-box;
  
             border: none;
-  color: #000000;
+  color: #ffffff;
   padding: 16px 16px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 48px;
   margin: 2px 2px;
   cursor: pointer;
@@ -35,73 +37,78 @@
   background-color: #313330;
             border-radius: 10px;
             box-sizing: border-box;
-            position: absolute;
-           right: 550px;
-            top:60px;
+            position: relative;
             border: none;
   color: #067391;
   padding: 16px 16px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 2px 2px;
   cursor: pointer;
 }
+        .form{
+            position: relative;
+        }
         .diff{
             color: #ffffff;
-            position: absolute;
+            display: inline;
             
         }
         .diff1{
             color: #ffffff;
-            position: absolute;
-            left:900px;
-            top:40px;
+            position: relative;
+            
         }
-         .ediff1{
+         .score{
             color: #ffffff;
-            position: absolute;
-            left:900px;
-            top:60px;
+           float: right;
+                display: inline;
+           
+             
         }
          .mdiff1{
             color: #ffffff;
-            position: absolute;
-            left:900px;
-            top:200px;
+            position: relative;
+             display: inline;
+            
         }
          .ddiff1{
             color: #ffffff;
-            position: absolute;
-            left:900px;
-            top:340px;
+            position: relative;
+             display: inline;
+          
         }
         .diff2{
             color: #067391;
+            width: 500px;
+            text-align: center;
+            height: 600px;
             position: absolute;
-            left:500px;
-            top:200px;
+            left: 0;
+            top:100px;
             z-index: 2;
-            font-size: 250px;
+            font-size: 200px;
+            visibility: visible;
         }
         html { 
-    font-family: sans-serif; 
+    font-family: "Times New Roman", serif;
+            font-size: 20px;
+        
     } 
       
         body { background-color: #313330;
             color:#067391;
-    width: 50%; 
+    width: 100%; 
     max-width: 800px; 
-    min-width: 480px; 
+    min-width: 768px; 
     margin: 0 auto; 
     } 
         
-        .vertical-menu {
+        .vertical-menu { float: left;
   width: 200px;
             position: absolute;
-            left: 10px;
-            top:10px;
+            left:50px;
+            cursor: pointer;
 }
 
 .vertical-menu a {
@@ -121,85 +128,99 @@
   background-color: #067391;
   color: white;
 }
+        
+        
+        @media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+   .vertical-menu a {
+    display: inline-block;
+  }
+            .vertical-menu{
+                width:400px;
+            }
+}
     </style> 
 </head> 
   
 <body onload="show();"> <br>
-    <div class="diff2" id="cd"></div>
-    <div class="diff1">BEST SCORES</div>
-    <div class="ediff1">EASY</div>
-    <ul class="ediff1">
+    
+     <div class="vertical-menu">
+  <a href="#" class="active">Difficulty</a>
+  <a id="easy" onclick="easy()" >Easy</a>
+  <a id="moderate" onclick="moderate()">Moderate</a>
+  <a id="difficult" onclick="difficult()">Difficult</a>
+</div>
+     <div class="score">
+    <div >BEST SCORES</div>
+    <span>EASY</span>
+    <ul >
     <li ><span id="ebest1"></span></li>
     <li ><span id="ebest2"></span></li>
     <li ><span id="ebest3"></span></li>
     <li ><span id="ebest4"></span></li>
     <li ><span id="ebest5"></span> </li>
-</ul>
-    <div class="mdiff1">MEDIUM</div>
-    <ul class="mdiff1">
+   </ul>
+    <span >MEDIUM</span>
+    <ul >
     <li ><span id="mbest1"></span></li>
     <li ><span id="mbest2"></span></li>
     <li ><span id="mbest3"></span></li>
     <li ><span id="mbest4"></span></li>
     <li ><span id="mbest5"></span> </li>
 </ul>
-    <div class="ddiff1">DIFFICULT</div>
-    <ul class="ddiff1">
+    <span >DIFFICULT</span>
+    <ul >
     <li ><span id="dbest1"></span></li>
     <li ><span id="dbest2"></span></li>
     <li ><span id="dbest3"></span></li>
     <li ><span id="dbest4"></span></li>
     <li ><span id="dbest5"></span> </li>
 </ul>
-    <div class="diff">Time: <span id="time"></span></div>
+    </div>
+    <br><br><br>
+    
+    <div class="diff">Time: <span id="time"></span></div><br>
  
    
     <audio id="audio"  src="mozart.mp3"></audio>
-<h4>Click the numbers as quickly as you can!</h4> 
+<h4 class="diff" >Click the numbers as quickly as you can!</h4> 
   
 <p></p> 
-    <div class="vertical-menu">
-  <a href="#" class="active">Difficulty</a>
-  <a id="easy" onclick="easy()" >Easy</a>
-  <a id="moderate" onclick="moderate()">Moderate</a>
-  <a id="difficult" onclick="difficult()">Difficult</a>
-</div>
+   
   
-<div class="form"> 
+
     
-    <input type="button" class="button1" id="start" onclick="cdtimer()" value="START" >
-    
+    <input type="button" class="button1" id="start" onclick="cdtimer()" value="START" ><br>
+    <div class="form"> 
+    <div class="diff2" id="cd"></div>
     <div class="griddo" >
         
-    <input type="button" class="button" id="1" onclick="myFunction(this.id)" value="    "  >
-    <input type="button" class="button" id="2" onclick="myFunction(this.id)" value="    " >
-    <input type="button" class="button" id="3" onclick="myFunction(this.id)" value= "    ">
-    <input type="button" class="button" id="4" onclick="myFunction(this.id)" value="    ">
-        
-       
-    <input type="button" class="button" id="5" onclick="myFunction(this.id)" value="    " >
+    <input type="button" class="button" id="1" onclick="myFunction(this.id)" value=""  >
+    <input type="button" class="button" id="2" onclick="myFunction(this.id)" value="" >
+    <input type="button" class="button" id="3" onclick="myFunction(this.id)" value= "">
+    <input type="button" class="button" id="4" onclick="myFunction(this.id)" value="">
+    <input type="button" class="button" id="5" onclick="myFunction(this.id)" value="" >
+    
     <input type="button" class="button" id="6" onclick="myFunction(this.id)" value="">
     <input type="button" class="button" id="7" onclick="myFunction(this.id)" value="" >
     <input type="button" class="button" id="8" onclick="myFunction(this.id)" value="" >
-        
     <input type="button" class="button" id="9" onclick="myFunction(this.id)" value="">
     <input type="button" class="button" id="10" onclick="myFunction(this.id)" value="" >
+    
     <input type="button" class="button" id="11" onclick="myFunction(this.id)" value="">
-    <input type="button" class="button" id="12" onclick="myFunction(this.id)" value="  ">
-        
-        
-   <input type="button" class="button" id="13" onclick="myFunction(this.id)" value="" >
+    <input type="button" class="button" id="12" onclick="myFunction(this.id)" value="">
+    <input type="button" class="button" id="13" onclick="myFunction(this.id)" value="" >
     <input type="button" class="button" id="14" onclick="myFunction(this.id)" value="" >
-    <input type="button" class="button" id="15" onclick="myFunction(this.id)" value="  ">
+    <input type="button" class="button" id="15" onclick="myFunction(this.id)" value="">
+    
     <input type="button" class="button" id="16" onclick="myFunction(this.id)" value="">
-       
     <input type="button" class="button" id="17" onclick="myFunction(this.id)" value="">
     <input type="button" class="button" id="18" onclick="myFunction(this.id)" value="" >
     <input type="button" class="button" id="19" onclick="myFunction(this.id)" value="">
-   <input type="button" class="button" id="20" onclick="myFunction(this.id)" value="  ">
+    <input type="button" class="button" id="20" onclick="myFunction(this.id)" value="">
         
     </div>
-</div> 
+</div>
   
 <script type = "text/javascript">
     var audio = document.getElementById("audio");
@@ -280,7 +301,7 @@ function reset() {
 	update();
 }
 function cdtimer()
-    {   
+    {   document.getElementById("cd").style.visibility="visible";
         stop();
 	     x.reset();
 	     update();
@@ -300,7 +321,9 @@ function cdtimer()
                      if(timeleft <= 0)
                      {
                       clearInterval(downloadTimer);
-                      game();
+                      document.getElementById("cd").style.visibility="hidden";
+                         game();
+                      
                       }
                  document.getElementById("cd").innerHTML = timeleft;
                  timeleft -= 1;
