@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <style>
+      body {
+          background-color: #313330;
+      }
+     </style>
+ </head>
+ <body onload="star();">
+   
+   <canvas id="canvas" width="1000" height="2000" ></canvas>
+     
+ </body>
+    <script type="application/javascript">
+      var t=0,base=500,u=45;
+      var kee,score=0;
+      var high=localStorage.getItem("high");
+      var ctx;
+      var ballcolor=4;
+      var scorll=0;
+      var theta=[0,0,0,0,0];
+      var j,round=0;
+      var colors=["#3ce632","#FFA500","#41cce8","#fa4d5c","#fdfff0"];
+      var audio = document.getElementById("audio");
+      var running=0;
+      var audio,out;
+      function star()
+        {
+           ctx = document.getElementById('canvas').getContext('2d');
+            ctx.scale(1,1);
+            kee = setInterval(draw,1);
+            running=1;
+            audio= new Audio("blop.m4a");
+            out= new Audio("supermario.m4a");
+        }
+        
+        function colorchangeicon(a,b)
+        {   
+            ctx.save();
+            ctx.translate(a,b);
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,10,0,Math.PI/2,false);
+            ctx.fillStyle=("#3ce632");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,10,Math.PI/2,Math.PI,false);
+            ctx.fillStyle=("#FFA500");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,10,Math.PI*1.5,Math.PI,true);
+            ctx.fillStyle=("#41cce8");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,10,Math.PI*2,Math.PI*1.5,true);
+            ctx.fillStyle=("#fa4d5c");
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore(); 
+        }
+        
+        function createobstacle(a,b,c)
+        {    ctx.fillRect(a-5,b-5,10,10);
+             ctx.fillStyle=(colors[4]);
+             
+             ctx.save(); 
+             ctx.translate(a,b);
+             ctx.rotate((( Math.PI/500) *theta[c]) );
+             
+             ctx.beginPath();
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 60, Math.PI / 2, Math.PI , false);
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 50, Math.PI, Math.PI/2 , true);
+             ctx.moveTo(0,0);
+             ctx.fillStyle='#FFA500';
+             ctx.fill('evenodd');
+             ctx.closePath();
+             
+             ctx.beginPath();
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 60, Math.PI / 2, 0, true);
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 50, 0, Math.PI/2 , false);
+             ctx.moveTo(0,0);
+             ctx.fillStyle='#fa4d5c';
+             ctx.fill('evenodd');
+             ctx.closePath();
+             ctx.beginPath(); 
+               
+             ctx.beginPath();
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 60, Math.PI ,Math.PI*1.5, false);
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 50, Math.PI*1.5, Math.PI , true);
+             ctx.moveTo(0,0);
+             ctx.fillStyle='#3ce632';
+             ctx.fill('evenodd');
+             ctx.closePath();
+             ctx.beginPath(); 
+               
+             ctx.beginPath();
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 60, Math.PI*1.5,Math.PI*2, false);
+             ctx.moveTo(0,0);
+             ctx.arc(0, 0, 50, Math.PI*2, Math.PI*1.5 , true);
+             ctx.moveTo(0,0);
+             ctx.fillStyle='#41cce8';
+             ctx.fill('evenodd');
+             ctx.closePath();
+         
+             ctx.restore();
+             theta[c]+=1;   
+        }
+        function save()
+        {
+            if(localStorage.getItem("high")==null)
+                localStorage.setItem("high",score);
+            high=localStorage.high;
+            if(score>localStorage.high)
+                localStorage.high=score;
+        }
+        
+        function pauseplay(r)
+        {
+            
+                   ctx.save();
+                    ctx.beginPath();
+                    ctx.translate(750,40);
+                    ctx.arc(0,0,20,0,Math.PI*2,true);
+                    ctx.fillStyle="#fdfff0";
+                    ctx.closePath;
+                    ctx.fill();
+                    ctx.restore();
+            if(running==0)
+                {
+                    ctx.save();
+                    
+                    ctx.translate(753,40);
+                    ctx.moveTo(-10,-10);
+                    ctx.beginPath();
+                    ctx.lineTo(10,0);
+                    ctx.lineTo(-10,10);
+                    ctx.lineTo(-10,-10);
+                    ctx.fillStyle="#313330";
+                    ctx.closePath();
+                    
+                    ctx.fill();
+                    ctx.restore();
+                }
+            else{
+                ctx.save();
+                    
+                    ctx.translate(750,40);
+                    ctx.moveTo(-10,-10);
+                    ctx.beginPath();
+                    ctx.lineTo(-3,-10);
+                    ctx.lineTo(-3,10);
+                    ctx.lineTo(-10,10);
+                    ctx.lineTo(-10,-10);
+                    
+                    ctx.fillStyle="#313330";
+                    ctx.closePath();
+                    
+                    ctx.fill();
+                
+                
+                    ctx.restore();
+                ctx.save();
+                    
+                    ctx.translate(763,40);
+                    ctx.moveTo(-10,-10);
+                    ctx.beginPath();
+                    ctx.lineTo(-3,-10);
+                    ctx.lineTo(-3,10);
+                    ctx.lineTo(-10,10);
+                    ctx.lineTo(-10,-10);
+                    
+                    ctx.fillStyle="#313330";
+                    ctx.closePath();
+                    
+                    ctx.fill();
+                
+                
+                    ctx.restore();
+            }
+                
+        }
+        function check()
+        {
+            if(base-(u*t/100)+(10*t*t/10000)>=200+scorll-(400*round)&&base-(u*t/100)+(10*t*t/10000)<=210+scorll-(400*round))
+              {    
+                  if(theta[round%4]%1000<=250&&theta[round%4]%1000>0&&ballcolor!=3)
+                  {  
+                      clearInterval(kee); out.play();
+                  }
+                  if(theta[round%4]%1000<=500&&theta[round%4]%1000>250&&ballcolor!=2)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+                   if(theta[round%4]%1000<=750&&theta[round%4]%1000>500&&ballcolor!=0)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+                  if (theta[round%4]%1000<=1000&&theta[round%4]%1000>750&&ballcolor!=1)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+                  
+              }
+          if(round==0)
+          {
+              if(base-(u*t/100)+(10*t*t/10000)>=90+scorll-(400*round)&&base-(u*t/100)+(10*t*t/10000)<=100+scorll-(400*round))
+              {   
+                  if(theta[round%4]%1000<=250&&theta[round%4]%1000>0&&ballcolor!=0)
+                  {  
+                      clearInterval(kee); out.play();
+                  }
+                  if(theta[round%4]%1000<=500&&theta[round%4]%1000>250&&ballcolor!=1)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+                   if(theta[round%4]%1000<=750&&theta[round%4]%1000>500&&ballcolor!=3)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+                  if (theta[round%4]%1000<=1000&&theta[round%4]%1000>750&&ballcolor!=2)
+                      {
+                      clearInterval(kee); out.play();
+                  }
+              }
+          
+          
+        }
+          else 
+          {
+              if(base-(u*t/100)+(10*t*t/10000)>=90+scorll-(400*(round-1))&&base-(u*t/100)+(10*t*t/10000)<=100+scorll-(400*(round-1)))
+              {  // ctx.fillText("ellothere mate",90,500);
+                  if(theta[(round-1)%4]%1000<=250&&theta[(round-1)%4]%1000>0&&ballcolor!=0)
+                  {  
+                      clearInterval(kee); out.play();
+                  }
+                  if(theta[(round-1)%4]%1000<=500&&theta[(round-1)%4]%1000>250&&ballcolor!=1)
+                  {
+                      clearInterval(kee); out.play();
+                  }
+                   if(theta[(round-1)%4]%1000<=750&&theta[(round-1)%4]%1000>500&&ballcolor!=3)
+                  {
+                      clearInterval(kee); out.play();
+                  }
+                  if (theta[(round-1)%4]%1000<=1000&&theta[(round-1)%4]%1000>750&&ballcolor!=2)
+                  {
+                      clearInterval(kee); out.play();
+                  }
+              }
+          }
+      
+        }
+        
+        
+      function draw()
+        {
+          ctx.clearRect(0,0,1000,2000);
+          ctx.font='25px serif';
+          ctx.beginPath();
+          ctx.save();
+          ctx.translate(500,(base-(u*t/100)+(10*t*t/10000)));
+          ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+          ctx.fillStyle=colors[ballcolor];
+          ctx.closePath();
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+          t++;
+          save();
+          if(base-(u*t/100)+(10*t*t/10000)>=490)
+              jump();
+          if(base-(u*t/100)+(10*t*t/10000)>=380+scorll-(400*round)&&base-(u*t/100)+(10*t*t/10000)<=420+scorll-(400*round))
+            {
+                ballcolor=Math.floor(Math.random() * 4);
+            }
+          
+          ctx.fillText(score,200,100);
+          ctx.fillText("High:",700,100);
+          ctx.fillText(high,775,100);
+          
+          if(base-(u*t/100)+(10*t*t/10000)<=330)
+            { 
+               scorll+=0.25;
+               u=35;
+            }
+          
+          if(base-(u*t/100)+(10*t*t/10000)>145+scorll-(400*round)&&base-(u*t/100)+(10*t*t/10000)<155+scorll-(400*round))
+              {   
+                  round++;
+                  score++;
+              }
+            
+          for(j=round>=4?(round-3):0;j<=round;j++)
+              {   
+                  createobstacle(500,150+scorll-(400*j),j%4);
+                  colorchangeicon(500,400+scorll-(400*j),j%4);
+                  
+              }
+            pauseplay(running);
+        check();
+      
+      }
+      document.addEventListener('click',function(e){
+          var xVal = e.clientX;
+          var yVal = e.clientY;
+          console.log(xVal);
+          if(xVal<=770&&xVal>=730&&yVal<=60&&yVal>=20)
+          {  if(running==1)
+              {
+                  clearInterval(kee);
+                  running=0;
+                  pauseplay(running);
+              }
+           else {
+               kee=setInterval(draw,1);
+               running=1;
+           }
+              
+          }
+          else jump();
+      },false);
+      
+        
+      function jump()
+      {   audio.play();
+          base=base-(u*t/100)+(10*t*t/10000);
+          t=0;
+      }
+  </script>
+</html>
