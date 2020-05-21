@@ -75,6 +75,37 @@
             ctx.restore(); 
         }
         
+        function icon(a,b)
+        {   
+            ctx.save();
+            ctx.translate(a,b);
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,5,0,Math.PI/2,false);
+            ctx.fillStyle=("#3ce632");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,5,Math.PI/2,Math.PI,false);
+            ctx.fillStyle=("#FFA500");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,5,Math.PI*1.5,Math.PI,true);
+            ctx.fillStyle=("#41cce8");
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.arc(0,0,5,Math.PI*2,Math.PI*1.5,true);
+            ctx.fillStyle=("#fa4d5c");
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore(); 
+        }
+        
         function createobstacle(a,b,c,d)
         {    ctx.fillRect(a-5,b-5,10,10);
              ctx.fillStyle=(colors[4]);
@@ -514,8 +545,10 @@
           ctx.closePath();
           ctx.fill();
           ctx.restore();
-          t[0]++;
+          if(ballcolor[0]==4)
+              icon(350,(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)));
           save();
+          t[0]++;
           if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)>=490)
               jump(650);
             
@@ -530,21 +563,23 @@
           ctx.closePath();
           ctx.fill();
           ctx.restore();
-          t[1]++;
+          if(ballcolor[1]==4)
+              icon(1050,(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)));
           save();
+          t[1]++;
           if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)>=490)
               jump(750);
             
             
           if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)>=380+scorll[0]-(400*round)&&base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)<=420+scorll[0]-(400*round))
             {
-                ballcolor[0]=Math.floor(Math.random() * 4);
+                ballcolor[0]=Math.floor(Math.random() * 5);
                 face[0]=obstype[round%4];
             }
             
           if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)>=380+scorll[1]-(400*roundb)&&base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)<=420+scorll[1]-(400*roundb))
             {
-                ballcolor[1]=Math.floor(Math.random() * 4);
+                ballcolor[1]=Math.floor(Math.random() * 5);
                 face[1]=obstypeb[roundb%4];
             }
           
@@ -598,15 +633,23 @@
                   colorchangeicon(1050,400+scorll[1]-(400*j),j%4);
                   
               }
-            pauseplay(running[0],600,40);
-            if(face[0]==0)
+            pauseplay(running[0],700,40);
+            if(ballcolor[0]!=4)
+                {
+                    if(face[0]==0)
                 check(round);
             else
                 checksquare(round);
-            if(face[1]==0)
+                }
+            if(ballcolor[1]!=4)
+                {
+                    if(face[1]==0)
                 checkb(roundb);
             else
                 checksquareb(roundb);
+                }
+            
+            
       
       }
         
@@ -619,7 +662,7 @@
               {
                   clearInterval(player);
                   running[0]=0;
-                  pauseplay(running[0],600,40);
+                  pauseplay(running[0],700,40);
               }
            else {
                player=setInterval(draw,1);
