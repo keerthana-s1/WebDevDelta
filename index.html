@@ -322,26 +322,6 @@
                   
               }
             
-            if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)>=200+scorll[0]-(400*(round-1))&&base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)<=210+scorll[0]-(400*(round-1)))
-              {    
-                  if(theta[(round-1)%4]%1000<=250&&theta[(round-1)%4]%1000>0&&ballcolor[0]!=3)
-                  {  
-                      clearInterval(player); out.play();
-                  }
-                  if(theta[(round-1)%4]%1000<=500&&theta[(round-1)%4]%1000>250&&ballcolor[0]!=2)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                   if(theta[(round-1)%4]%1000<=750&&theta[(round-1)%4]%1000>500&&ballcolor[0]!=0)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                  if (theta[(round-1)%4]%1000<=1000&&theta[(round-1)%4]%1000>750&&ballcolor[0]!=1)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                  
-              }
           
           
          
@@ -393,26 +373,8 @@
                   
               }
             
-             if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)>=200+scorll[1]-(400*(roundb-1))&&base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)<=210+scorll[1]-(400*(roundb-1)))
-              {    
-                  if(thetab[(roundb-1)%4]%1000<=250&&thetab[(roundb-1)%4]%1000>0&&ballcolor[1]!=3)
-                  {  
-                      clearInterval(player); out.play();
-                  }
-                  if(thetab[(roundb-1)%4]%1000<=500&&thetab[(roundb-1)%4]%1000>250&&ballcolor[1]!=2)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                   if(thetab[(roundb-1)%4]%1000<=750&&thetab[(roundb-1)%4]%1000>500&&ballcolor[1]!=0)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                  if (thetab[(roundb-1)%4]%1000<=1000&&thetab[(roundb-1)%4]%1000>750&&ballcolor[1]!=1)
-                      {
-                      clearInterval(player); out.play();
-                  }
-                  
-              }
+            
+            
           
          
               if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)>=90+scorll[1]-(400*(roundb-1))&&base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)<=100+scorll[1]-(400*(roundb-1)))
@@ -473,37 +435,7 @@
              
         }
             
-        if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)>=150+scorll[0]-(400*(round-1))+50/Math.cos(angle))
-           {
-               if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)<=150+scorll[0]-(400*(round-1))+60/Math.cos(angle))
-                   
-               {   //console.log("inside");
-                   
-                  if(theta[(round-1)%4]%1000>125&&theta[(round-1)%4]%1000<=375&&ballcolor[0]!=2)
-                       {   //console.log("inside1");
-                           clearInterval(player); out.play();
-                       }
-                   if(theta[(round-1)%4]%1000>375&&theta[(round-1)%4]%1000<=625&&ballcolor[0]!=0)
-                       {   //console.log("inside2");
-                           clearInterval(player); out.play();
-                       }
-                   if(theta[(round-1)%4]%1000>625&&theta[(round-1)%4]%1000<=875&&ballcolor[0]!=3)
-                       {    //console.log("inside3");
-                           clearInterval(player); out.play();
-                       }
-                   if(theta[(round-1)%4]%1000>875&&theta[(round-1)%4]%1000<=1000&&ballcolor[0]!=1)
-                       {   //console.log("inside4");
-                           clearInterval(player); out.play();
-                       }
-                   if(theta[(round-1)%4]%1000>0&&theta[(round-1)%4]%1000<=125&&ballcolor[0]!=1)
-                       {   //console.log("inside5");
-                           clearInterval(player); out.play();
-                       }
-                       
-            }
-            
-             
-        }
+       
             
         if(base[0]-(u*t[0]/100)+(g*t[0]*t[0]/10000)<=150+scorll[0]-(400*(round-1))-50/Math.cos(angle))
            {
@@ -574,37 +506,7 @@
              
         }
             
-        if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)>=150+scorll[1]-(400*(roundb-1))+50/Math.cos(angle))
-           {
-               if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)<=150+scorll[1]-(400*(roundb-1))+60/Math.cos(angle))
-                   
-               {   
-                   
-                  if(thetab[(roundb-1)%4]%1000>125&&thetab[(roundb-1)%4]%1000<=375&&ballcolor[1]!=2)
-                       {   //console.log("inside1");
-                           clearInterval(player); out.play();
-                       }
-                   if(thetab[(roundb-1)%4]%1000>375&&thetab[(roundb-1)%4]%1000<=625&&ballcolor[1]!=0)
-                       {   //console.log("inside2");
-                           clearInterval(player); out.play();
-                       }
-                   if(thetab[(roundb-1)%4]%1000>625&&thetab[(roundb-1)%4]%1000<=875&&ballcolor[1]!=3)
-                       {    //console.log("inside3");
-                           clearInterval(player); out.play();
-                       }
-                   if(thetab[(roundb-1)%4]%1000>875&&thetab[(roundb-1)%4]%1000<=1000&&ballcolor[1]!=1)
-                       {   //console.log("inside4");
-                           clearInterval(player); out.play();
-                       }
-                   if(thetab[(roundb-1)%4]%1000>0&&thetab[(roundb-1)%4]%1000<=125&&ballcolor[1]!=1)
-                       {   //console.log("inside5");
-                           clearInterval(player); out.play();
-                       }
-                       
-            }
-            
-             
-        }
+        
             
         if(base[1]-(u*t[1]/100)+(g*t[1]*t[1]/10000)<=150+scorll[1]-(400*(roundb-1))-50/Math.cos(angle))
            {
@@ -741,20 +643,28 @@
                   
               }
             pauseplay(running[0],700,40);
-            if(ballcolor[0]!=4)
+            for(j=round>=4?(round-3):0;j<=round;j++)
                 {
-                    if(face[0]==0)
-                check(round);
-            else
-                checksquare(round);
-                }
-            if(ballcolor[1]!=4)
+                    if(ballcolor[0]!=4)
                 {
-                    if(face[1]==0)
-                checkb(roundb);
+                    if(obstype[j]==0)
+                check(j);
             else
-                checksquareb(roundb);
+                checksquare(j);
                 }
+                }
+            for(j=roundb>=4?(roundb-3):0;j<=roundb;j++)
+                {
+                    if(ballcolor[1]!=4)
+                {
+                    if(obstypeb[j]==0)
+                checkb(j);
+            else
+                checksquareb(j);
+                }
+                }
+            
+            
             
             
       
